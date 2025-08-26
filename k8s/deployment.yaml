@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: smart-return-reuse
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: smart-return-reuse
+  template:
+    metadata:
+      labels:
+        app: smart-return-reuse
+    spec:
+      containers:
+        - name: app
+          image: your-registry/smart-return-reuse:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://postgres:5432/smartreturn
+            - name: SPRING_DATASOURCE_USERNAME
+              value: postgres
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: postgres
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: smart-return-reuse-service
+spec:
+  selector:
+    app: smart-return-reuse
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: LoadBalancer
+

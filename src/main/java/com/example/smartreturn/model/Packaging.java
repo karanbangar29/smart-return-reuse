@@ -1,0 +1,28 @@
+package com.example.smartreturn.model;
+
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
+
+@Entity
+public class Packaging {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String qrCode; // unique code printed on package
+    private String status; // IN_TRANSIT, DELIVERED, RETURNED, RECYCLED
+    private String currentHolder; // customer id or droppoint id
+    private LocalDateTime createdAt = LocalDateTime.now();
+
+    // getters + setters
+    public Long getId(){return id;}
+    public void setId(Long id){this.id=id;}
+    public String getQrCode(){return qrCode;}
+    public void setQrCode(String qrCode){this.qrCode=qrCode;}
+    public String getStatus(){return status;}
+    public void setStatus(String status){this.status=status;}
+    public String getCurrentHolder(){return currentHolder;}
+    public void setCurrentHolder(String currentHolder){this.currentHolder=currentHolder;}
+    public LocalDateTime getCreatedAt(){return createdAt;}
+    public void setCreatedAt(LocalDateTime createdAt){this.createdAt=createdAt;}
+}
+
