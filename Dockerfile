@@ -1,4 +1,5 @@
-FROM eclipse-temurin:17-jdk-alpine
+FROM eclipse-temurin:17-jdk-jammy AS builder
+
 ARG JAR_FILE=target/*.jar
 WORKDIR /app
 COPY ${JAR_FILE} app.jar

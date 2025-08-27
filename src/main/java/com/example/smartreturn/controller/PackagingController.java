@@ -13,7 +13,10 @@ public class PackagingController {
     public PackagingController(PackagingService service){this.service=service;}
 
     @PostMapping("/create")
-    public ResponseEntity<Packaging> create(){ return ResponseEntity.ok(service.createPackaging()); }
+    public ResponseEntity<Packaging> create(@RequestBody  Packaging pac ){
+        return ResponseEntity.ok( service.createPackaging(pac));
+    }
+
 
     @GetMapping
     public ResponseEntity<List<Packaging>> list(){ return ResponseEntity.ok(service.listAll()); }
