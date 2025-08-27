@@ -13,10 +13,10 @@ public class PackagingService {
 
     public PackagingService(PackagingRepository repo){this.repo=repo;}
 
-    public Packaging createPackaging(){
+    public Packaging createPackaging(Packaging pac){
         Packaging p = new Packaging();
         p.setQrCode("QR-"+ UUID.randomUUID().toString());
-        p.setStatus("IN_TRANSIT");
+        p.setStatus(pac.getStatus());
         repo.save(p);
         return p;
     }
