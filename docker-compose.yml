@@ -1,4 +1,5 @@
 version: '3.8'
+
 services:
   app:
     build: .
@@ -8,6 +9,12 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/userdb
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=root
+      - SPRING_REDIS_HOST=redis
+      - SPRING_REDIS_PORT=6379
+    depends_on:
+      - db
+      - redis
+
   db:
     image: postgres:15
     environment:
@@ -16,3 +23,8 @@ services:
       POSTGRES_PASSWORD: root
     ports:
       - "5433:5432"
+
+  redis:
+    image: redis:8.0.3
+    ports:
+      - "6379:6379"

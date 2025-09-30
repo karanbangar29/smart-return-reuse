@@ -2,6 +2,7 @@ package com.example.smartreturn.service;
 
 import com.example.smartreturn.model.Packaging;
 import com.example.smartreturn.repository.PackagingRepository;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +14,7 @@ public class PackagingService {
 
     public PackagingService(PackagingRepository repo){this.repo=repo;}
 
+    @CachePut
     public Packaging createPackaging(Packaging pac){
         Packaging p = new Packaging();
         p.setQrCode("QR-"+ UUID.randomUUID().toString());
